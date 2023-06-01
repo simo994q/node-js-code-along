@@ -1,9 +1,18 @@
-import http from 'http'
+import express from 'express'
+import { postRouter } from './routes/post.router.js';
 
-http.createServer((request, response) => {
-    response.writeHead(200, {'Content-Type': 'text/html'});
-    response.write('Hello World!');
-    response.end();
-}).listen(4000, () => {
-    console.log('Kører på http://localhost:4000/');
+const app = express()
+
+app.get("/", (req, res) => {
+    res.send("Velkommen til min node.js app");
+})
+
+app.use(postRouter)
+
+app.listen(4242, () => {
+    console.log('Kører på port 4242: http://localhost:4242');
+})
+
+app.use((req, res) => {
+    res.status(404).send("Siden blev ikke fundet")
 })
