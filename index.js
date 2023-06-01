@@ -4,6 +4,7 @@ import { productsRouter } from './routes/products.router.js';
 import dotenv from 'dotenv';
 
 const app = express()
+app.use(express.urlencoded({ extended: true}))
 
 app.use(postRouter)
 app.use(productsRouter)
