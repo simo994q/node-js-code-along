@@ -3,17 +3,17 @@ import express from 'express'
 
 const postRouter = express.Router()
 
-postRouter.get('/post', (req, res) => {
-    res.send('Hent alle poster');
+postRouter.get('/get', (req, res) => {
+    res.send('Hent alle poster - get');
 })
 postRouter.post('/post', (req, res) => {
-    res.send('Hent alle poster');
+    res.send('Hent alle poster - opret');
 })
-postRouter.put('/post', (req, res) => {
-    res.send('Hent alle poster');
+postRouter.put('/put', (req, res) => {
+    res.send('Hent alle poster - opdater');
 })
-postRouter.delete('/post', (req, res) => {
-    res.send('Hent alle poster');
+postRouter.delete('/delete', (req, res) => {
+    res.send('Hent alle poster - slet');
 })
 
 export { postRouter }
