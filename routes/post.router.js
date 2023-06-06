@@ -1,12 +1,22 @@
 import express from 'express'
-
+import db from '././Config/db.config.js'
 
 const postRouter = express.Router()
 
-postRouter.get('/get', (req, res) => {
-    console.log(req.query.sortkey)
-    res.send('Hent alle poster - get');
+db.query(`SELECT title, name FROM artist JOIN song ON artist.id = song.artist_id`, (err, result) => {
+    console.log(result);
 })
+
+
+postRouter.get('/get', (req, res) => {
+    // console.log(req.query.sortkey)
+    // res.send('Hent alle poster - get');
+
+
+
+})
+
+
 postRouter.post('/post', (req, res) => {
     res.send(`
 ${req.body.firstname}
