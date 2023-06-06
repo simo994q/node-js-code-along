@@ -3,11 +3,11 @@ import { postRouter } from './routes/post.router.js';
 import { productsRouter } from './routes/products.router.js';
 import dotenv from 'dotenv';
 
-import db from './Config/db.config.js'
+// import db from './Config/db.config.js'
 
-db.query(`SELECT title, name FROM artist JOIN song ON artist.id = song.artist_id`, (err, result) => {
-    console.log(result);
-})
+// db.query(`SELECT title, name FROM artist JOIN song ON artist.id = song.artist_id`, (err, result) => {
+//     console.log(result);
+// })
 
 const app = express()
 app.use(express.urlencoded({ extended: true}))

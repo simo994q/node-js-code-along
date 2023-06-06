@@ -1,5 +1,8 @@
 import express from 'express'
-import db from '././Config/db.config.js'
+// import db from '../Config/db.config.js'
+import SongController from '../Controllers/song.controller.js';
+
+const song = new SongController()
 
 const postRouter = express.Router()
 
@@ -9,31 +12,22 @@ const postRouter = express.Router()
 
 
 postRouter.get('/get', (req, res) => {
-    // console.log(req.query.sortkey)
-    // res.send('Hent alle poster - get');
-
-
-
+    console.log(song.list());
 })
-
+postRouter.get('/get/:id([0-9]*)', (req, res) => {
+    console.log(song.details());
+})
 
 postRouter.post('/post', (req, res) => {
-    res.send(`
-${req.body.firstname}
-${req.body.lastname}
-${req.body.email}
-${req.body.birthday}
-${req.body.password}
-${req.body.occupation}
-${req.body.city}
-${req.body.address}
-    `)
+    console.log(song.create());
 })
+
 postRouter.put('/put', (req, res) => {
-    res.send('Hent alle poster - opdater');
+    console.log(song.update());
 })
+
 postRouter.delete('/delete', (req, res) => {
-    res.send('Hent alle poster - slet');
+    console.log(song.delete());
 })
 
 export { postRouter }
