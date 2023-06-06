@@ -3,9 +3,9 @@ import db from '././Config/db.config.js'
 
 const postRouter = express.Router()
 
-db.query(`SELECT title, name FROM artist JOIN song ON artist.id = song.artist_id`, (err, result) => {
-    console.log(result);
-})
+// db.query(`SELECT title, name FROM artist JOIN song ON artist.id = song.artist_id`, (err, result) => {
+//     console.log(result);
+// })
 
 
 postRouter.get('/get', (req, res) => {
