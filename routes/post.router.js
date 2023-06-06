@@ -12,10 +12,11 @@ const postRouter = express.Router()
 
 
 postRouter.get('/get', (req, res) => {
-    console.log(song.list());
+    // console.log(song.list());
+    return song.list(req, res)
 })
 postRouter.get('/get/:id([0-9]*)', (req, res) => {
-    console.log(song.details());
+    return song.details(req, res)
 })
 
 postRouter.post('/post', (req, res) => {
