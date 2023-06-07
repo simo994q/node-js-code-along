@@ -1,5 +1,5 @@
 import express from 'express'
-import { postRouter } from './routes/post.router.js';
+import { songRouter } from './routes/song.router.js';
 import { productsRouter } from './routes/products.router.js';
 import dotenv from 'dotenv';
 
@@ -12,7 +12,7 @@ import dotenv from 'dotenv';
 const app = express()
 app.use(express.urlencoded({ extended: true}))
 
-app.use(postRouter)
+app.use(songRouter)
 app.use(productsRouter)
 dotenv.config();
 

@@ -4,31 +4,31 @@ import SongController from '../Controllers/song.controller.js';
 
 const song = new SongController()
 
-const postRouter = express.Router()
+const songRouter = express.Router()
 
 // db.query(`SELECT title, name FROM artist JOIN song ON artist.id = song.artist_id`, (err, result) => {
 //     console.log(result);
 // })
 
 
-postRouter.get('/get', (req, res) => {
+songRouter.get('/songs', (req, res) => {
     // console.log(song.list());
     return song.list(req, res)
 })
-postRouter.get('/get/:id([0-9]*)', (req, res) => {
+songRouter.get('/songs/:id([0-9]*)', (req, res) => {
     return song.details(req, res)
 })
 
-postRouter.post('/post', (req, res) => {
-    console.log(song.create());
+songRouter.post('/songs', (req, res) => {
+    return song.create(req, res)
 })
 
-postRouter.put('/put', (req, res) => {
+songRouter.put('/songs', (req, res) => {
     console.log(song.update());
 })
 
-postRouter.delete('/delete', (req, res) => {
+songRouter.delete('/songs', (req, res) => {
     console.log(song.delete());
 })
 
-export { postRouter }
+export { songRouter }
