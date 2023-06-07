@@ -40,16 +40,16 @@ class SongController {
     create = (req, res) => {
         const { title, content, artist_id } = req.body
 
-        if ( title && content && artist_id ) {
+        if (title && content && artist_id) {
             const sql = `
             INSERT INTO song(title, content, artist_id)
-            VALUES(?,?,?)
+            VALUES (?,?,?)
             `
             db.query(sql, [title, content, artist_id], (err, result) => {
                 if (err) {
                     console.error(err);
                 } else {
-                    res.json({new_id: result.id})
+                    res.json({ new_id: result.insertId })
                 }
             })
         }
@@ -73,18 +73,3 @@ class SongController {
 
 export default SongController
 
-// const { title, content, artist_id } = req.body
-
-// if (title  && content && artist_id) {
-//     const sql = `
-//     INSERT INTO song(title, content, artist_id)
-//     VALUES (?,?,?)
-//     `
-//     db.query(sql, [title, content, artist_id], (err, result) => {
-//         if (err) {
-//             console.error(err);
-//         } else {
-//             res.json({new_id: result.insertId})
-//         }
-//     })
-// }
