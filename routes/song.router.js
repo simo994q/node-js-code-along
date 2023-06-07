@@ -12,7 +12,6 @@ const songRouter = express.Router()
 
 
 songRouter.get('/songs', (req, res) => {
-    // console.log(song.list());
     return song.list(req, res)
 })
 songRouter.get('/songs/:id([0-9]*)', (req, res) => {
@@ -24,11 +23,11 @@ songRouter.post('/songs', (req, res) => {
 })
 
 songRouter.put('/songs', (req, res) => {
-    console.log(song.update());
+    return song.update(req, res)
 })
 
-songRouter.delete('/songs', (req, res) => {
-    console.log(song.delete());
+songRouter.delete('/songs/:id([0-9]*)', (req, res) => {
+    return song.delete(req, res)
 })
 
 export { songRouter }

@@ -6,11 +6,20 @@ class SongController {
     }
 
     list = (req, res) => {
-        const sql = `SELECT s.title, a.name
+        let { sortkey, sortdir, limit, attributes } = req.query
+
+        // ternary operators
+        sortkey = sortkey ? sortkey : 's.id'
+        sortdir = sortdir ? sortdir.toUpperCase() : 'ASC'
+        limit = limit ? `LIMIT ${parseInt(limit)}` : ''
+        attributes = attributes ?  attributes : 's.id, s.title, a.name'
+
+        const sql = `SELECT ${attributes}
                         FROM song s
                         JOIN artist a
                         ON s. artist_id = a.id
-                        ORDER BY a.name`
+                        ORDER BY ${sortkey} ${sortdir} ${limit}`
+                        console.log(sql);
         db.query(sql, (err, result) => {
             if (err) {
                 console.error(err)
@@ -55,19 +64,46 @@ class SongController {
         }
     }
 
-    read = () => {
-        console.log('Kører read metode');
-        return true
+    update = (req, res) => {
+        const { title, content, artist_id, id } = req.body
+
+        if (title && content && artist_id && id) {
+            const sql = `
+            UPDATE song
+            SET title = ?,
+            content = ?,
+            artist_id = ?
+            WHERE id = ?
+            `
+            db.query(sql, [title, content, artist_id, id], (err, result) => {
+                if (err) {
+                    console.error(err);
+                } else {
+                    res.json({
+                        status: 'ok',
+                        updated_id: id
+                    })
+                }
+            })
+        }
+
     }
 
-    update = () => {
-        console.log('Kører update metode');
-        return true
-    }
-
-    delete = () => {
-        console.log('Kører delete metode');
-        return true
+    delete = (req, res) => {
+        const id = req.params.id
+        const sql = `DELETE
+                        FROM song 
+                        WHERE id = ?`
+        db.query(sql, [id], (err, result) => {
+            if (err) {
+                console.error(err)
+            } else {
+                res.json({
+                    status: 'ok',
+                    deleted_id: id
+                })
+            }
+        })
     }
 }
 
