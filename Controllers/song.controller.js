@@ -99,7 +99,7 @@ class SongController {
         const sql = `DELETE
                         FROM song 
                         WHERE id = ?`
-        db.query(sql, [id], (err, result) => {
+        db.query(sql, id, (err, result) => {
             if (err) {
                 console.error(err)
             } else {
