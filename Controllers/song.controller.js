@@ -19,7 +19,6 @@ class SongController {
                         JOIN artist a
                         ON s. artist_id = a.id
                         ORDER BY ${sortkey} ${sortdir} ${limit}`
-                        console.log(sql);
         db.query(sql, (err, result) => {
             if (err) {
                 console.error(err)
