@@ -1,9 +1,11 @@
 import db from '../Config/db.config.js'
 
+
 class SongController {
     constructor() {
         console.log('Class SongController instantiated');
     }
+
 
     list = (req, res) => {
         let { sortkey, sortdir, limit, attributes } = req.query
@@ -28,6 +30,7 @@ class SongController {
         })
     }
 
+
     details = (req, res) => {
         const id = req.params.id
         const sql = `SELECT s.title, s.content, a.name
@@ -44,6 +47,7 @@ class SongController {
             }
         })
     }
+
 
     create = (req, res) => {
         const { title, content, artist_id } = req.body
@@ -62,6 +66,7 @@ class SongController {
             })
         }
     }
+
 
     update = (req, res) => {
         const { title, content, artist_id, id } = req.body
@@ -88,12 +93,13 @@ class SongController {
 
     }
 
+
     delete = (req, res) => {
         const id = req.params.id
         const sql = `DELETE
                         FROM song 
                         WHERE id = ?`
-        db.query(sql, [id], (err, result) => {
+        db.query(sql, id, (err, result) => {
             if (err) {
                 console.error(err)
             } else {
@@ -106,5 +112,5 @@ class SongController {
     }
 }
 
-export default SongController
 
+export default SongController
