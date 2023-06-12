@@ -1,6 +1,6 @@
 import express from 'express'
 import { songRouter } from './routes/song.router.js';
-import { productsRouter } from './routes/products.router.js';
+import { usersRouter } from './routes/users.router.js';
 import dotenv from 'dotenv';
 
 
@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }))
 
 
 app.use(songRouter)
-app.use(productsRouter)
+app.use(usersRouter)
 dotenv.config();
 
 

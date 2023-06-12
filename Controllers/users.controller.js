@@ -1,26 +1,16 @@
 import db from '../Config/db.config.js'
 
 
-class SongController {
+class usersController {
     constructor() {
-        console.log('Class SongController instantiated');
+        console.log('Class usersController instantiated');
     }
 
 
     list = (req, res) => {
-        let { sortkey, sortdir, limit, attributes } = req.query
-
-        // ternary operators
-        sortkey = sortkey ? sortkey : 's.id'
-        sortdir = sortdir ? sortdir.toUpperCase() : 'ASC'
-        limit = limit ? `LIMIT ${parseInt(limit)}` : ''
-        attributes = attributes ?  attributes : 's.id, s.title, a.name'
-
-        const sql = `SELECT ${attributes}
-                        FROM song s
-                        JOIN artist a
-                        ON s. artist_id = a.id
-                        ORDER BY ${sortkey} ${sortdir} ${limit}`
+        const sql = `SELECT *
+                        FROM users
+                        `
         db.query(sql, (err, result) => {
             if (err) {
                 console.error(err)
@@ -33,12 +23,9 @@ class SongController {
 
     details = (req, res) => {
         const id = req.params.id
-        const sql = `SELECT s.title, s.content, a.name
-                        FROM song s
-                        JOIN artist a
-                        ON s. artist_id = a.id
-                        WHERE s.id = ?
-                        ORDER BY a.name`
+        const sql = `SELECT *
+                        FROM users
+                        WHERE user_id = ?`
         db.query(sql, [id], (err, result) => {
             if (err) {
                 console.error(err)
@@ -50,14 +37,14 @@ class SongController {
 
 
     create = (req, res) => {
-        const { title, content, artist_id } = req.body
+        const { user_id, firstname, lastname, username, password, email, birthday, gender } = req.body
 
-        if (title && content && artist_id) {
+        if (user_id && firstname && lastname && username && password && email && birthday && gender) {
             const sql = `
-            INSERT INTO song(title, content, artist_id)
-            VALUES (?,?,?)
+            INSERT INTO users(user_id, firstname, lastname, username, password, email, birthday, gender)
+            VALUES (?,?,?,?,?,?,?,?)
             `
-            db.query(sql, [title, content, artist_id], (err, result) => {
+            db.query(sql, [user_id, firstname, lastname, username, password, email, birthday, gender], (err, result) => {
                 if (err) {
                     console.error(err);
                 } else {
@@ -113,4 +100,4 @@ class SongController {
 }
 
 
-export default SongController
+export default usersController
