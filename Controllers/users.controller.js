@@ -56,23 +56,27 @@ class usersController {
 
 
     update = (req, res) => {
-        const { title, content, artist_id, id } = req.body
+        const { firstname, lastname, username, password, email, birthday, gender, user_id } = req.body
 
-        if (title && content && artist_id && id) {
+        if (firstname && lastname && username && password && email && birthday && gender, user_id) {
             const sql = `
-            UPDATE song
-            SET title = ?,
-            content = ?,
-            artist_id = ?
-            WHERE id = ?
+            UPDATE users
+            SET firstname = ?,
+            lastname = ?,
+            username = ?,
+            password = ?,
+            email = ?,
+            birthday = ?,
+            gender = ?
+            WHERE user_id = ?
             `
-            db.query(sql, [title, content, artist_id, id], (err, result) => {
+            db.query(sql, [firstname, lastname, username, password, email, birthday, gender, user_id], (err, result) => {
                 if (err) {
                     console.error(err);
                 } else {
                     res.json({
                         status: 'ok',
-                        updated_id: id
+                        updated_id: user_id
                     })
                 }
             })
@@ -84,8 +88,8 @@ class usersController {
     delete = (req, res) => {
         const id = req.params.id
         const sql = `DELETE
-                        FROM arist 
-                        WHERE id = ?`
+                        FROM users 
+                        WHERE user_id = ?`
         db.query(sql, id, (err, result) => {
             if (err) {
                 console.error(err)
