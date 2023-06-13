@@ -1,6 +1,7 @@
 import express from 'express'
-import { songRouter } from './routes/song.router.js';
+import { router as songRouter } from './routes/song.router.js';
 import { usersRouter } from './routes/users.router.js';
+import { router } from './routes/init.sequelizer.router.js';
 import dotenv from 'dotenv';
 
 
@@ -10,6 +11,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(songRouter)
 app.use(usersRouter)
+app.use(router)
 dotenv.config();
 
 
