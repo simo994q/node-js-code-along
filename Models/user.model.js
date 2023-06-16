@@ -1,7 +1,7 @@
 import { sequelize } from "../Config/db.sequelize.js"
-import {DataTypes, Model} from 'sequelize'
+import {Sequelize, DataTypes, Model} from 'sequelize'
 
-class UserModel extends Model{}
+class UserModel extends Model {}
 
 UserModel.init({
     id: {
@@ -22,7 +22,7 @@ UserModel.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    email: {
+    password: {
         type: DataTypes.STRING,
         allowNull: false
     },
