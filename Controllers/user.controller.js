@@ -9,11 +9,23 @@ class UserController {
     }
 
     details = async (req, res) => {
+        const { id } = req.params || 0
         const result = await UserModel.findAll({
-            where: {id: req.params.id},
-            attributes: ['id', 'firstname', 'lastname'],
+            where: { id: id },
+            attributes: ['id', 'firstname', 'lastname', 'email']
         })
         res.json(result)
+    }
+
+    create = async (req, res) => {
+        const { firstname, lastname, email, password } = req.body
+        if (firstname && lastname && email && password) {
+            const model = await UserModel.create(req.body)
+            res.json({newId: model.id})
+        } else {
+            res.sendStatus(418)
+        }
+
     }
 }
 

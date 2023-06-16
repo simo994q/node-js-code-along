@@ -11,4 +11,8 @@ router.get('/user/:id([0-9]*)', (req, res) => {
     controller.details(req, res)
 })
 
+router.post('/user', (req, res) => {
+    controller.create(req, res)
+})
+
 export { router }
