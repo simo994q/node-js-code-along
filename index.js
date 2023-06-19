@@ -3,6 +3,7 @@ import { router as songRouter } from './routes/song.router.js';
 import { router } from './routes/init.sequelizer.router.js';
 import { router as UserRouter } from './routes/user.router.js'
 import { router as OrgRouter } from './routes/org.router.js'
+import { router as AuthRouter } from './routes/authenticate.router.js'
 import dotenv from 'dotenv';
 
 
@@ -14,6 +15,8 @@ app.use(songRouter)
 app.use(router)
 app.use(UserRouter)
 app.use(OrgRouter)
+app.use(AuthRouter)
+
 dotenv.config();
 
 
