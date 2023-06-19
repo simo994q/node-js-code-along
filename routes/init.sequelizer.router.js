@@ -6,6 +6,7 @@ const router = express.Router()
 
 import SongModel from '../Models/song.model.js'
 import ArtistModel from '../Models/artist.model.js'
+import OrgModel from '../Models/org.model.js'
 
 
 router.get('/init', (req, res) => {
